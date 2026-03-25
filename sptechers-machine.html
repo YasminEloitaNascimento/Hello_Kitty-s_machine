@@ -1,0 +1,166 @@
+<!-- Criado por Marise Miranda | 2017.1 -->
+<!-- Adaptado por Matheus Matos | 2025.1 -->
+ <!-- Adaptado por Yasmin Eloita| 2026.1 -->
+
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello kitty's Machine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <center>
+        <div class="chuva"></div>
+
+        <h1 class="fonte_topo topo cor_rosa">
+            Hello kitty's Machine
+        </h1>
+
+        
+
+     <div class="menu-abas aba">
+           
+       
+        <span 
+            id="aba-dec"onclick="mudarBase('decimal')"
+            >Decimal
+        </span>
+
+        <span 
+            id="aba-bin"onclick="mudarBase('binario')"
+            >Binário
+        </span>
+
+        <span 
+            id="aba-oct"onclick="mudarBase('octal')"
+            >Octal
+        </span>
+
+        <span 
+            id="aba-hexa"onclick="mudarBase('hexadecimal')"
+            >Hexadecimal
+        </span>
+    </div>
+
+       
+
+            <div class="quadrado_meio">
+
+                
+            <h3>Digite um número :</h3>
+            <input id="ipt_decimal" type="text" placeholder="Ex: 10">
+            <br><br>
+            
+            <div class="centralizar-botao">
+            <button class="coracaozinho" onclick="converter()" ></button>
+            </div>
+
+            <div id="div_resultado_decimal"></div>
+
+            <div class="quadradinho_resultados">
+            <p>Binário:
+            <div id="div_resultado_binario"></div>
+            </p>
+            </div>
+
+            <div class="quadradinho_resultados">
+            <p>Octal:
+            <div id="div_resultado_octal"></div>
+            </p>
+            </div>
+
+            <div class="quadradinho_resultados">
+            <p>Hexadecimal:
+            <div id="div_resultado_hexa"></div>
+            </p>
+            </div>
+         </div>
+
+          <img class="img-cinna" 
+          src="cinnamoroll.png" 
+          alt="png" 
+          width="100" 
+          height="100"
+        >
+
+        
+    </center>
+
+    <script>
+        let baseAtual = 'decimal';
+
+        function mudarBase(base){
+            baseAtual = base;
+
+        
+            if(base == 'decimal') document.getElementById('aba-dec').classList.add('ativa');
+            if(base == 'octal') document.getElementById('aba-oct').classList.add('ativa');
+            if(base == 'binario') document.getElementById('aba-bin').classList.add('ativa');
+            if(base == 'hexadecimal') document.getElementById('aba-hex').classList.add('ativa');
+        
+        }
+        
+        
+        
+        function converter() {
+            let valorInput = ipt_decimal.value;
+            let numeroDecimal;
+           
+
+
+            if (baseAtual == 'decimal' ) {
+                numeroDecimal = Number(valorInput);
+            }
+            else if (baseAtual == 'binario') {
+                numeroDecimal = parseInt (valorInput, 2)
+            }
+            else if (baseAtual == 'octal'){
+                numeroDecimal = parseInt (valorInput, 8)
+            }
+            else if (baseAtual == 'hexadecimal'){
+                numeroDecimal = parseInt (valorInput, 16)
+            }
+        
+
+
+        if (valorInput !="") {
+            div_resultado_binario.innerHTML = numeroDecimal.toString(2);
+            div_resultado_octal.innerHTML = numeroDecimal.toString(8);
+            div_resultado_hexa.innerHTML = numeroDecimal.toString(16).toUpperCase();
+        } else {
+            alert("Eiii, digite alguma coisa né ");
+        }
+    
+    }
+
+        function gerarCoracao() {
+            const c = document.createElement('div'); 
+            c.innerHTML = '♡'; 
+            c.className = 'coracao-caindo'; 
+            
+            // Sorteia uma posição na horizontal 
+            c.style.left = Math.random() * 100 + 'vw';
+            
+            // Sorteia uma velocidade
+            c.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            
+            c.style.color = 'white';
+            
+            // Adiciona o coração na div 'chuva'
+            document.querySelector('.chuva').appendChild(c);
+            
+            
+            setTimeout(() => { c.remove(); }, 5000);
+        }
+
+        // criar coração a cada 400 
+        setInterval(gerarCoracao, 400);
+
+    </script>
+</body>
+
+</html>
